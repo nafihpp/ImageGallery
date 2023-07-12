@@ -1,34 +1,37 @@
-const { Task } = require("../model/TaskModel");
-const { missingReqBody } = require("../utils/MissingBody");
+const multer = require("multer")
 
-const getAllImages = async (req, res) => {
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, '/tmp/my-uploads')
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      cb(null, file.fieldname + '-' + uniqueSuffix)
+    }
+  })
+  
+const upload = multer({ storage: storage })
+
+const uploadImage = async (req, res) => {
     try {
-        const allTasks = await Task.find().select("task_id task completed");
-        return res.status(200).json(allTasks);
+        return res.status(200).json("success");
     } catch (error) {
         res.status(400).json({
-            message: error,
+            message: "error",
         });
     }
 };
-const addTask = async (req, res) => {
+
+const getAllImages = async (req, res) => {
     try {
-        const { task_id, task, completed } = req.body.currentTodo;
-        console.log(req.body);
-        const requiredFields = ["task_id", "task", "completed"];
-        missingReqBody(requiredFields, req.body.currentTodo, res);
-        const Newtask = {
-            task_id,
-            task,
-            completed,
-        };
-        const NewTaskResponse = await Task.create(Newtask);
-        console.log(NewTaskResponse);
-        return res.status(200).json({ message: "successfully added task" });
+        return res.status(200).json("success");
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(400).json({
+            message: "error",
+        });
     }
 };
+
 
 module.exports = {
     getAllImages,
