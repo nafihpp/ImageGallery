@@ -15,10 +15,15 @@ const getAllImages = async (req, res) => {
     try {
         const filespath = path.join(process.cwd(),"public/images");
         fs.readdir(filespath, (err, files) => {
-            console.log(files.length);
+            if(files.length > 0){
+                const current = files.map((file) => `http://localhost:${process.env.PORT}/images/${file}`);
+                res.status(200).json(current)
+            }
+            else{
+                res.status(400).json({message:"no Images in Gallery"})
+            }
         })
         
-        return res.status(200).json("success");
     } catch (error) {
         res.status(400).json({
             message: "error",
