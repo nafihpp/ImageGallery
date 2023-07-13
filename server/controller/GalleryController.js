@@ -17,7 +17,7 @@ const getAllImages = async (req, res) => {
         fs.readdir(filespath, (err, files) => {
             if(files.length > 0){
                 const current = files.map((file) => `http://localhost:${process.env.PORT}/images/${file}`);
-                res.status(200).json(current)
+                res.status(200).json({images:current})
             }
             else{
                 res.status(400).json({message:"no Images in Gallery"})
