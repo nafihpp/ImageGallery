@@ -28,7 +28,6 @@ export const ImageGallery = () => {
   };
   const uploadImage = (image) => {
     setProgress(1);
-    console.log(image, "==iimg");
     const formData = new FormData();
     formData.append("gallery_image", image);
     axios("https://gallery-server-n3lc.onrender.com/api/gallery/upload", {
@@ -46,6 +45,7 @@ export const ImageGallery = () => {
     })
       .then((response) => {
         console.log(response);
+        fetchAllImages();
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -72,17 +72,20 @@ export const ImageGallery = () => {
               className="input hidden"
               onChange={handleImage}
             />
-            <a className="text-lg border-[1px] border-[#000] w-8 h-8 flex justify-center border-dashed rounded-[50%]">
+            <a className="text-lg border-[2px] border-[burlywood] w-8 h-8 flex justify-center border-dashed rounded-[50%] text-[burlywood]">
               +
             </a>
           </label>
         )}
         {imagePreview && (
+        <div>
           <img
             src={imagePreview}
             alt="image"
             className="h-[100px] w-[100px] object-contain"
           />
+          <p>{imageName}</p>
+        </div>
         )}
       </div>
       {progress > 0 && (
