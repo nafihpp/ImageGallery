@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { ImageCard } from "../../components/ImageCard/ImageCard";
 import { Progressbar } from "../../components/Progessbar";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ImageGallery = () => {
   const [imageName, setImageName] = useState("");
@@ -45,6 +47,7 @@ export const ImageGallery = () => {
     })
       .then((response) => {
         console.log(response);
+        toast.success(response.data.message);
         fetchAllImages();
       })
       .catch((err) => console.log(err))
@@ -96,6 +99,7 @@ export const ImageGallery = () => {
       <div className="show-images mt-16 flex justify-between flex-wrap overflow-auto">
         {allImages.map((img) => <ImageCard img={img} />)}
       </div>
+      <ToastContainer />
     </div>
   );
 };
