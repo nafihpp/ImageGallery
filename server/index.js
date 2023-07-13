@@ -1,7 +1,6 @@
 const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
-const { connectDb } = require("./config/dbConfig");
 
 const app = express();
 //Port
@@ -12,7 +11,6 @@ const GalleryRoute = require("./routes/GalleryRoute");
 app.use(express.json());
 app.use(cors());
 app.use(express.static("public"))
-connectDb();
 
 //routes
 app.use("/api", GalleryRoute);
