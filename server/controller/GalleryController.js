@@ -16,7 +16,8 @@ const getAllImages = async (req, res) => {
         const filespath = path.join(process.cwd(),"public/images");
         fs.readdir(filespath, (err, files) => {
             if(files.length > 0){
-                const current = files.map((file) => `/images/${file}`);
+                const current = files.map((file) => `${req.protocol}://${req.get("host")}/images/${file}`);
+                console.log(current)
                 res.status(200).json({images:current})
             }
             else{
