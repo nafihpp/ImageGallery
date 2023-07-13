@@ -11,10 +11,17 @@ const GalleryRoute = require("./routes/GalleryRoute");
 
 app.use(express.json());
 app.use(cors());
+app.use(express.static("public"))
 connectDb();
 
 //routes
 app.use("/api", GalleryRoute);
+
+app.use("*", (req, res) => {
+    res.status(404).json({
+        message: "Route does not exist",
+    });
+});
 
 app.listen(PORT, () => {
     console.log(`server running in ${PORT}`);

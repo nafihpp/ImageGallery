@@ -1,16 +1,23 @@
+const path = require("path");
+const fs = require("fs");
+
 const uploadImage = async (req, res) => {
     try {
-        console.log(req);
-        return res.status(200).json("Image Uploaded Successfully");
+        return res.status(200).json({message:"Image Uploaded Successfully"});
     } catch (error) {
         res.status(400).json({
-            message: "error",
+            message: "Error uploading Image",
         });
     }
 };
 
 const getAllImages = async (req, res) => {
     try {
+        const filespath = path.join(process.cwd(),"public/images");
+        fs.readdir(filespath, (err, files) => {
+            console.log(files.length);
+        })
+        
         return res.status(200).json("success");
     } catch (error) {
         res.status(400).json({
@@ -18,7 +25,6 @@ const getAllImages = async (req, res) => {
         });
     }
 };
-
 
 module.exports = {
     getAllImages,
