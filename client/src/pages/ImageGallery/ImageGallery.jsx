@@ -12,7 +12,7 @@ export const ImageGallery = () => {
       fetchAllImages();
   }, []);
   const fetchAllImages = () => {
-      axios("https://gallery-server-n3lc.onrender.com/api/gallery",{
+      axios("https://imagegallerybackend.onrender.com/api/getall",{
         method:"GET",
       }).then((res) =>{
         setAllImages(res.data.images);
@@ -30,7 +30,7 @@ export const ImageGallery = () => {
     setProgress(1);
     const formData = new FormData();
     formData.append("gallery_image", image);
-    axios("https://gallery-server-n3lc.onrender.com/api/gallery/upload", {
+    axios("https://imagegallerybackend.onrender.com/api/upload", {
       data: formData,
       method: "POST",
       headers: {
