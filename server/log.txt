@@ -1,0 +1,1 @@
+{"url":"/api/getall","method":"GET"}{"url":"/api/getall","method":"GET"}{"url":"/api/upload","method":"POST"}{"url":"/api/upload","method":"POST"}{"url":"/api/upload","method":"POST"}

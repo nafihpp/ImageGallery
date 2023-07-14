@@ -7,10 +7,13 @@ const app = express();
 const PORT = process.env.PORT;
 //routes import
 const GalleryRoute = require("./routes/GalleryRoute");
+const { logger } = require("./middlewares/logger");
 
 app.use(express.json());
 app.use(cors());
 app.use(express.static("public"))
+
+app.use(logger);
 
 //routes
 app.use("/api", GalleryRoute);
