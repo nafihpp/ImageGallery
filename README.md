@@ -4,6 +4,7 @@
 -   Image gallery: Displays all uploaded images in a grid format.
 -   Responsive design: The web app is designed to adapt to different screen sizes and devices.
 -   Upload progress: Live image uploading progress can be seen
+-   Logger : Logs and save in log.txt in server when any user makes a request, saves the url and method of the request done by the user.
 
 ## Technologies used
 
