@@ -11,7 +11,7 @@ const uploadImage = async (req, res) => {
     }
 };
 
-const getAllImages = async (req, res) => {
+const getAllImages = async (req, res, next) => {
     try {
         const filespath = path.join(process.cwd(),"public/images");
         fs.readdir(filespath, (err, files) => {
