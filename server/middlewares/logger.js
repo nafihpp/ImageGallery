@@ -21,8 +21,6 @@ const logger = (req,res,next) =>{
         time:formattedDate,
     }
 
-    console.log(currentReq,'====')
-
     fs.appendFile('log.txt', JSON.stringify(currentReq), (err) => {
         if (err) {
           console.error(err);
