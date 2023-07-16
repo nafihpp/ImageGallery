@@ -9,3 +9,9 @@ body{
     height: 600px;
     overflow-y: auto;
 }
+
+@media all and (max-width: 680px) {
+    #root {
+        width: 90%;
+    }
+}
